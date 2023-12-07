@@ -5,11 +5,12 @@ to go through the pains manually setting up these resources.
 
 ## Getting started
 
+1. Ensure you have your AWS CLI credentials setup (`aws configure`)
 1. Create the Route53 Zone and ACM certificate through the console (or other means). 
 1. Copy `.env.example` to `.env` and set the parameters. 
-1. Ensure you have your AWS CLI credentials setup (`aws configure`)
 1. Install dependencies: `npm install`
-1. Deploy to AWS: `npx cdk diff`
+1. Configure non-secret parameters in `bin/mediawiki.ts`
+1. Deploy to AWS: `npx cdk deploy MediaWikiDev`
 
 ## Roadmap
 
