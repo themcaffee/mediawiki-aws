@@ -1,8 +1,15 @@
-# Starter AWS CDK template for Mediawiki
+# Starter AWS CDK template for MediaWiki
+
+This is a starter template for deploying MediaWiki with CDK to AWS. The intent of this it to provide a secure and scalable way to get started without having
+to go through the pains manually setting up these resources.
 
 ## Getting started
 
-Create the Route53 Zone and ACM certificate through the console (or other means). Copy `.env.example` to `.env` and put in the appropriate values. 
+1. Create the Route53 Zone and ACM certificate through the console (or other means). 
+1. Copy `.env.example` to `.env` and set the parameters. 
+1. Ensure you have your AWS CLI credentials setup (`aws configure`)
+1. Install dependencies: `npm install`
+1. Deploy to AWS: `npx cdk diff`
 
 ## Development 
 
