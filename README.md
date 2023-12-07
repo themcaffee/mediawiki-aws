@@ -11,11 +11,15 @@ to go through the pains manually setting up these resources.
 1. Install dependencies: `npm install`
 1. Configure non-secret parameters in `bin/mediawiki.ts`
 1. Deploy to AWS: `npx cdk deploy MediaWikiDev`
+1. Visit your site to go through the [setup](https://www.mediawiki.org/wiki/Manual:Config_script). This will create the necessary database tables and only need to happen the first deployment.
+1. Do not use the downloaded `LocalSettings.php` file in place of your original one. The `LocalSettings.php` downloaded will contain plain text
+   credentials that should not be commited to git.
 
 ## Roadmap
 
 - [ ] Shared EFS between containers for images
 - [ ] Images on S3
+- [ ] Optimize Cloudfront caching
 
 ## Development 
 
