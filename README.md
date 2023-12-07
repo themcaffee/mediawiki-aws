@@ -11,6 +11,11 @@ to go through the pains manually setting up these resources.
 1. Install dependencies: `npm install`
 1. Deploy to AWS: `npx cdk diff`
 
+## Roadmap
+
+- [ ] Shared EFS between containers for images
+- [ ] Images on S3
+
 ## Development 
 
 ### Useful commands
