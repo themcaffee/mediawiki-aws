@@ -54,15 +54,16 @@ export class MediaWikiStack extends cdk.Stack {
 
     // Set default subdomain to stage
     props.subdomain = props.subdomain || props.stage;
-
+    props.database = props.database || {};
+    props.database.dbName = props.database.dbName || 'mediawiki';
     // VPC
     const vpc = new ec2.Vpc(this, 'MediaWikiVPC', {
       maxAzs: 2 // Use 2 Availability Zones for high availability
     });
 
     const dbSecret = new rds.DatabaseSecret(this, 'MediaWikiDbSecret', {
-      username: props.database?.username || 'mediawiki',
-      dbname: props.database?.dbName || 'mediawiki',
+      username: props.database.username || 'mediawiki',
+      dbname: props.database.dbName,
     });
 
     // Create a security group for the Aurora cluster
@@ -78,7 +79,7 @@ export class MediaWikiStack extends cdk.Stack {
       engine: rds.DatabaseClusterEngine.AURORA_MYSQL,
       vpc,
       removalPolicy: isProduction ? cdk.RemovalPolicy.RETAIN : cdk.RemovalPolicy.DESTROY,
-      defaultDatabaseName: dbSecret.secretValueFromJson('dbname').toString(),
+      defaultDatabaseName: props.database.dbName,
       credentials: Credentials.fromSecret(dbSecret),
       scaling: {
         maxCapacity: props.scaling?.maxCapacity || 1,
