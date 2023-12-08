@@ -118,13 +118,13 @@ export class MediaWikiStack extends cdk.Stack {
       taskDefinition,
       logging: ecs.LogDrivers.awsLogs({ streamPrefix: `mediawiki-${props.stage}` }),
       environment: {
-        DB_HOST: auroraCluster.clusterEndpoint.hostname,
+        MEDIAWIKI_DB_HOST: auroraCluster.clusterEndpoint.hostname,
         MEDIAWIKI_SERVER: `//${props.subdomain}.${props.zoneName}`,
       },
       secrets: {
-        DB_USERNAME: ecs.Secret.fromSecretsManager(dbSecret, 'username'),
-        DB_PASSWORD: ecs.Secret.fromSecretsManager(dbSecret, 'password'),
-        DB_NAME: ecs.Secret.fromSecretsManager(dbSecret, 'dbname'),
+        MEDIAWIKI_DB_USERNAME: ecs.Secret.fromSecretsManager(dbSecret, 'username'),
+        MEDIAWIKI_DB_PASSWORD: ecs.Secret.fromSecretsManager(dbSecret, 'password'),
+        MEDIAWIKI_DB_NAME: ecs.Secret.fromSecretsManager(dbSecret, 'dbname'),
         MEDIAWIKI_SECRET_STRING: ecs.Secret.fromSsmParameter(secretStringSsm),
         MEDIAWIKI_UPGRADE_KEY: ecs.Secret.fromSsmParameter(upgradeKeySsm),
       }
