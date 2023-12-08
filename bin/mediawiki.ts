@@ -14,7 +14,7 @@ const environmentVariables = [
   'HOSTED_ZONE_ID',
   'ZONE_NAME',
   'ACM_CERTIFICATE_ARN',
-  'MEDIAWIKI_SECRET_STRING',
+  'MEDIAWIKI_SECRET_KEY',
   'MEDIAWIKI_UPGRADE_KEY',
 ];
 
@@ -31,7 +31,7 @@ new MediaWikiStack(app, 'MediaWikiDev', {
   zoneName: process.env.ZONE_NAME || '',
   acmCertificateArn: process.env.ACM_CERTIFICATE_ARN || '',
   mediawiki: {
-    secretString: process.env.MEDIAWIKI_SECRET_STRING || '',
+    secretString: process.env.MEDIAWIKI_SECRET_KEY || '',
     upgradeKey: process.env.MEDIAWIKI_UPGRADE_KEY || '',
   }
 });
